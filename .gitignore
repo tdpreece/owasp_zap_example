@@ -1,3 +1,4 @@
 *.pyc
 *.swp
+.idea
 web_app_under_test/mysite/db.sqlite3

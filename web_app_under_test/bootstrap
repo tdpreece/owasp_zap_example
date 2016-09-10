@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -e
+
+source /usr/local/bin/virtualenvwrapper.sh
+export WORKON_HOME=$HOME/.virtualenvs
+mkvirtualenv --python=python3.4 web_app_under_test
+
+pip install -r requirements.txt

@@ -43,6 +43,7 @@ Information about the Attack is shown in the bottom pane of the ZAP GUI, e.g.
 * vulnerabilities found
 
 TODO: 
+* Add login form
 * Add robots.txt and sitemap.xml to help the spider.
 * Look through current vulnerabilities with runserver.
 * Run with wsgi and apache and check vulnerabilities.

@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
+sudo apt-get install phantomjs
+
+project_name='web_app_under_test'
 source /usr/local/bin/virtualenvwrapper.sh
 export WORKON_HOME=$HOME/.virtualenvs
-mkvirtualenv --python=python3.4 web_app_under_test
-
+mkvirtualenv --python=python3.4 "${project_name}"
+workon "${project_name}"
 pip install -r requirements.txt

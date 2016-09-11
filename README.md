@@ -67,6 +67,6 @@ YouTube video on ["ZAP Tutorial - Authentication, Session and Users Management" 
 
 
 TODO: 
-* Add a form with a CSRF vulnerability.
-* Run through ZAP.
+* Add a base template with a logged in indicator. 
+* Run through ZAP then spider to check for vulnerabilities
 * Look at other OWASP top 10 and add examples.

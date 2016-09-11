@@ -44,6 +44,26 @@ Information about the Attack is shown in the bottom pane of the ZAP GUI, e.g.
 
 ## Run functional tests through ZAP
 
+Run tests with the `--liveserver=localhost:8082` option.
+
+YouTube video on ["ZAP Tutorial - Authentication, Session and Users Management" by Cosmin Stefan](https://www.youtube.com/watch?v=cR4gw-cPZOA)
+* Define a context: right-click on folder in 'Sites' > 'Include context' > 'Default context' > click 'OK' 
+* Click 'Session Properties' (5th icon in on the tool bar)
+### Manual
+* * In 'Session Management' check that Cookie-based Session Management is selected.
+* * In 'Authentication', select 'Form-based Authentication', 
+* * * enter "http://localhost:8082/login/" into 'Login Form Targer Url' field.
+* * * enter "username=y&password=x" into 'Login Request POST Data' field
+* * * select "username" in 'Username' select box
+* * * select "password" in 'Password' select box
+* * In Users, click 'Add' and enter User Name: john, username: john, password, johnpassword
+### Automatic
+** Open up 'Sites' and 'http://localhost:8082' > right-click on 'POST:login...' > 'Flag as context' > 'Form-based Auth Login Request'
+** Select username and password fields
+
+** Add logged in/ logged out indicators
+
+* Open up 'Sites' and 'http://localhost:8082', right-click on 'http://localhost:8082' > Spider
 
 
 TODO: 

@@ -6,7 +6,11 @@
 </head>
 
 <body>
-
+{% if user.is_authenticated %}
+  <p>Logged in</p>
+{%  else %}
+  <p>Logged out</p>
+{% endif %}
 <div id="home">
   <a id="contact-form-link" href="{% url 'contact-form' %}">A contact form</a>
 <div>

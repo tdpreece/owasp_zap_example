@@ -6,6 +6,11 @@
 </head>
 
 <body>
+{% if user.is_authenticated %}
+  <p>Logged in</p>
+{%  else %}
+  <p>Logged out</p>
+{% endif %}
   <h1>This is a test</h1>
       <form action="" method="post">
         <table>

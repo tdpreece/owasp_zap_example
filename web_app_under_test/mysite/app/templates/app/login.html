@@ -5,6 +5,11 @@
   <title>Title</title>
 </head>
 <body>
+{% if user.is_authenticated %}
+  <p>Logged in</p>
+{%  else %}
+  <p>Logged out</p>
+{% endif %}
 {% if form.errors %}
 <p>Your username and password didn't match. Please try again.</p>
 {% endif %}

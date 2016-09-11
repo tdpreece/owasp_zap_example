@@ -25,6 +25,10 @@ class TestLogin(StaticLiveServerTestCase):
 
     def setUp(self):
         proxy_url = 'localhost:8080'
+        # Uncomment the browser you'd like to use.
+        # Phantom will not use proxy if proxy is running on 127.0.1.1
+        #   - https://github.com/ariya/phantomjs/issues/11342
+        #   - https://github.com/ariya/phantomjs/issues/12407
         # self.browser = phantomjs(proxy_url)
         self.browser = firefox(proxy_url)
         self.browser.implicitly_wait(3)
@@ -92,7 +96,7 @@ def phantomjs(proxy_url=None):
     if proxy_url:
         service_args = [
             '--proxy={}'.format(proxy_url),
-            '--proxy-type=socks5',
+            '--proxy-type=http',
         ]
         return webdriver.PhantomJS(service_args=service_args)
     return webdriver.PhantomJS()

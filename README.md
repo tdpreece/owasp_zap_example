@@ -42,13 +42,11 @@ Information about the Attack is shown in the bottom pane of the ZAP GUI, e.g.
 * pages crawled
 * vulnerabilities found
 
+## Run functional tests through ZAP
+
+
+
 TODO: 
-* Add login form
-* Add robots.txt and sitemap.xml to help the spider.
-* Look through current vulnerabilities with runserver.
-* Run with wsgi and apache and check vulnerabilities.
-* Look into configuring a spider.
-* Look into AJAX spider.
-* Drive yourself using ZAP proxy, which will inspect the requests and responses
-and record vulnerabilities (could drive with Selenium?).
-* Try out Active scanning.
+* Add a form with a CSRF vulnerability.
+* Run through ZAP.
+* Look at other OWASP top 10 and add examples.

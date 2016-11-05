@@ -104,11 +104,15 @@ python manage.py runserver localhost:8081
 * click 'Start Scan' button.
 * New urls that weren't accessed during the functional tests may now be added to the Site tree.
 
+![alt text](http://tdpreece.github.io/assets/img/owasp_zap_example/zap-scan-after-spider.png "After running Spider")
+
 ## Attack website
 * Open up 'Sites' and 'http://localhost:8081', right-click on 'http://localhost:8081' > Active Scan,
 * select the user that was used to run the tests (John),
 * click 'Start Scan' button.
 * The alerts tab at the bottom of the gui shows a list of possible security vulnearbilities.
+
+![alt text](http://tdpreece.github.io/assets/img/owasp_zap_example/zap-scan-xss-vulnerability.png "XSS vulnerability found by scan")
 
 # Extensions
 ## AJAX Spider

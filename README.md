@@ -66,7 +66,9 @@ Information about the Attack is shown in the bottom pane of the ZAP GUI, e.g.
 DJANGO_LIVE_TEST_SERVER_ADDRESS=localhost:8081 python manage.py test
 ```
 * Urls from the webserver that was browser during tests now appear in the Sites tree. 
-[alt text](http://tdpreece.github.io/assets/img/owasp_zap_example/zap-scan-after-fts.png "After running functional tests through ZAP.")
+
+![alt text](http://tdpreece.github.io/assets/img/owasp_zap_example/zap-scan-after-fts.png "After running functional tests through ZAP.")
+
 The PhantomJS browser will not use proxy if proxy is running on 127.0.1.1 so I used Firefox for this
 example, see: https://github.com/ariya/phantomjs/issues/11342, https://github.com/ariya/phantomjs/issues/12407.
 I have successfully used PhantomsJS with ZAP by running ZAP on a separate host.

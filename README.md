@@ -146,11 +146,6 @@ This is an example in Java: https://github.com/continuumsecurity/bdd-security/bl
 ## Live Threat Model
 Results of the scans could be fed back into a live threat modelling tool (see [Irius Risk](https://www.continuumsecurity.net/)).
 
-TODO: 
-* Add a base template with a logged in indicator. 
-* page with dynamic link
-* Ajax spider
-
-### References
+# References
 YouTube video on ["ZAP Tutorial - Authentication, Session and Users Management" by Cosmin Stefan](https://www.youtube.com/watch?v=cR4gw-cPZOA)
 

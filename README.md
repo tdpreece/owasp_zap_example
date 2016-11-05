@@ -131,7 +131,7 @@ class TestLogin(StaticLiveServerTestCase):
     
     
     def test_scan(self):
-        # At this point have a dev server running and a broser.
+        # At this point have a dev server running and a browser.
         # Can set up the Zap session, run the spider and scan using
         # the api.
 ```

@@ -76,20 +76,21 @@ I have successfully used PhantomsJS with ZAP by running ZAP on a separate host.
 
 ## Configure a user
 * Check that detection of anti CSRF tokens in enabled: settings > Anti CSRF Tokens, checked name of token that matches the one I was using (csrfmiddlewaretoken).
+
 ### Manual
-    * In 'Session Management' check that Cookie-based Session Management is selected.
-    * In 'Authentication', select 'Form-based Authentication',
-        * enter "http://localhost:8081/login/" into 'Login Form Targer Url' field.
-        * enter "username=y&password=x" into 'Login Request POST Data' field
-        * select "username" in 'Username' select box
-        * select "password" in 'Password' select box
-        * Add logged in/ logged out indicators (`\QLogged in\E` and `\QLogged out\E`)
-    * In Users, click 'Add' and enter User Name: john, username: john, password, johnpassword
+* In 'Session Management' check that Cookie-based Session Management is selected.
+* In 'Authentication', select 'Form-based Authentication',
+    * enter "http://localhost:8081/login/" into 'Login Form Targer Url' field.
+    * enter "username=y&password=x" into 'Login Request POST Data' field
+    * select "username" in 'Username' select box
+    * select "password" in 'Password' select box
+    * Add logged in/ logged out indicators (`\QLogged in\E` and `\QLogged out\E`)
+* In Users, click 'Add' and enter User Name: john, username: john, password, johnpassword
 
 ### Automatic
-    * Open up 'Sites' and 'http://localhost:8081' > right-click on 'POST:login...' > 'Flag as context' > 'Form-based Auth Login Request'
-    * Select username and password fields
-    * Add logged in/ logged out indicators (`\QLogged in\E` and `\QLogged out\E`)
+* Open up 'Sites' and 'http://localhost:8081' > right-click on 'POST:login...' > 'Flag as context' > 'Form-based Auth Login Request'
+* Select username and password fields
+* Add logged in/ logged out indicators (`\QLogged in\E` and `\QLogged out\E`)
    
 ## Spider website
 * Start up Django server

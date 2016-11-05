@@ -109,7 +109,9 @@ python manage.py runserver localhost:8081
 * The alerts tab at the bottom of the gui shows a list of possible security vulnearbilities.
 
 # Extensions
-## Ajax Spider
+## AJAX Spider
+The standard spider will not find links that are dynamically generated via javascript.  For this case
+the AJAX spider will need to be used.
 
 ## Automate
 By default ZAP runs on port 8080.  If you open http://localhost:8080 in a browser you'll be able

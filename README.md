@@ -83,6 +83,7 @@ I have successfully used PhantomsJS with ZAP by running ZAP on a separate host.
         * enter "username=y&password=x" into 'Login Request POST Data' field
         * select "username" in 'Username' select box
         * select "password" in 'Password' select box
+        * Add logged in/ logged out indicators (`\QLogged in\E` and `\QLogged out\E`)
     * In Users, click 'Add' and enter User Name: john, username: john, password, johnpassword
 
 ### Automatic
@@ -107,11 +108,34 @@ python manage.py runserver localhost:8081
 * The alerts tab at the bottom of the gui shows a list of possible security vulnearbilities.
 
 # Extensions
-* Can automate the entire process
+## Ajax Spider
+
+## Automate
+By default ZAP runs on port 8080.  If you open http://localhost:8080 in a browser you'll be able
+to browse ZAP's REST API.  There is also a Python library for working with the REST SPI: 
+https://github.com/zaproxy/zaproxy/wiki/ApiPython
+
 ```pyhthon
 # Gist of a scan in a LiveServerTestCase
-
+class TestLogin(StaticLiveServerTestCase):
+    ...
+    
+    
+    def test_scan(self):
+        # At this point have a dev server running and a broser.
+        # Can set up the Zap session, run the spider and scan using
+        # the api.
 ```
+
+## Wrap scans in BDD
+Though the report given by ZAP is very clear you may want to only test regressions, 
+maintain a list of known false positives and/or have more fine grained scans.
+This can be done quite nicely with the use of a BDD style testing framework 
+(e.g. [Behave for Python](http://pythonhosted.org/behave/)).
+This is an example in Java: https://github.com/continuumsecurity/bdd-security/blob/master/src/test/resources/features/passive_scan.feature.
+
+## Live Threat Model
+Results of the scans could be fed back into a live threat modelling tool (see [Irius Risk](https://www.continuumsecurity.net/)).
 
 TODO: 
 * Add a base template with a logged in indicator. 

@@ -48,56 +48,77 @@ I didn't spend much time looking into this but tried Chrome instead.
 You can use this to do a quick scan of a site without the need for running the
 functional tests and spidering the site.  As users aren't configured it will not
 cover as much of the site as the scan shown later.
-I created a simple Django web site and ran it on http://localhost:8082/ so that I could test against this.
+I created a simple Django web site and ran it on http://localhost:8081/ so that I could test against this.
 In ZAP GUI:
 * I selected the 'Quick Start' tab,
-* entered my site's address (http://localhost:8082/),
+* entered my site's address (http://localhost:8081/),
 * and clicked 'Attack'
 
 Information about the Attack is shown in the bottom pane of the ZAP GUI, e.g.
 * pages crawled
 * vulnerabilities found
 
+## Full Scan (manual)
 ## Run functional tests through ZAP
 * In ZAP, File > New Session,
-* Run tests using port 8082 (make sure the Django server that was started earlier has been stopped)
+* Run tests using port 8081 (make sure the Django server that was started earlier has been stopped)
 ```bash
-python manage.py test --liveserver=localhost:8082
+DJANGO_LIVE_TEST_SERVER_ADDRESS=localhost:8081 python manage.py test
 ```
+* Urls from the webserver that was browser during tests now appear in the Sites tree. 
+
 The PhantomJS browser will not use proxy if proxy is running on 127.0.1.1 so I used Firefox for this
 example, see: https://github.com/ariya/phantomjs/issues/11342, https://github.com/ariya/phantomjs/issues/12407.
 I have successfully used PhantomsJS with ZAP by running ZAP on a separate host.
 
-* Define a context: right-click on folder in 'Sites' > 'Include context' > 'Default context' > click 'OK' ,
-* Click 'Session Properties' (5th icon in on the tool bar),
-
-YouTube video on ["ZAP Tutorial - Authentication, Session and Users Management" by Cosmin Stefan](https://www.youtube.com/watch?v=cR4gw-cPZOA)
+## Define a context
+* right-click on folder in 'Sites' > 'Include context' > 'Default context' > click 'OK' ,
 
 ## Configure a user
+* Check that detection of anti CSRF tokens in enabled: settings > Anti CSRF Tokens, checked name of token that matches the one I was using (csrfmiddlewaretoken).
 ### Manual
     * In 'Session Management' check that Cookie-based Session Management is selected.
     * In 'Authentication', select 'Form-based Authentication',
-        * enter "http://localhost:8082/login/" into 'Login Form Targer Url' field.
+        * enter "http://localhost:8081/login/" into 'Login Form Targer Url' field.
         * enter "username=y&password=x" into 'Login Request POST Data' field
         * select "username" in 'Username' select box
         * select "password" in 'Password' select box
     * In Users, click 'Add' and enter User Name: john, username: john, password, johnpassword
 
 ### Automatic
-    * Open up 'Sites' and 'http://localhost:8082' > right-click on 'POST:login...' > 'Flag as context' > 'Form-based Auth Login Request'
+    * Open up 'Sites' and 'http://localhost:8081' > right-click on 'POST:login...' > 'Flag as context' > 'Form-based Auth Login Request'
     * Select username and password fields
-    * Add logged in/ logged out indicators
-
+    * Add logged in/ logged out indicators (`\QLogged in\E` and `\QLogged out\E`)
+   
 ## Spider website
-* Open up 'Sites' and 'http://localhost:8082', right-click on 'http://localhost:8082' > Spider
-You may want to do this with both a logged in and a logged out user to make sure that
-you cover both logged in and logged out pages.
-
+* Start up Django server
+```bash
+python manage.py runserver localhost:8081
+```
+* Open up 'Sites' and 'http://localhost:8081', right-click on 'http://localhost:8081' > Spider,
+* select the user that was used to run the tests (John),
+* click 'Start Scan' button.
+* New urls that weren't accessed during the functional tests may now be added to the Site tree.
 
 ## Attack website
+* Open up 'Sites' and 'http://localhost:8081', right-click on 'http://localhost:8081' > Active Scan,
+* select the user that was used to run the tests (John),
+* click 'Start Scan' button.
+* The alerts tab at the bottom of the gui shows a list of possible security vulnearbilities.
 
+# Extensions
+* Can automate the entire process
+```pyhthon
+# Gist of a scan in a LiveServerTestCase
+
+```
 
 TODO: 
 * Add a base template with a logged in indicator. 
 * Run through ZAP then spider to check for vulnerabilities
 * Look at other OWASP top 10 and add examples.
+* Ajax spider
+
+### References
+YouTube video on ["ZAP Tutorial - Authentication, Session and Users Management" by Cosmin Stefan](https://www.youtube.com/watch?v=cR4gw-cPZOA)
+

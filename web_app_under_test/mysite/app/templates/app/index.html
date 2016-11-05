@@ -12,7 +12,10 @@
   <p>Logged out</p>
 {% endif %}
 <div id="home">
-  <a id="contact-form-link" href="{% url 'contact-form' %}">A contact form</a>
+  <ul>
+    <li><a id="contact-form-link" href="{% url 'contact-form' %}">A contact form</a></li>
+    <li><a id="search-link" href="{% url 'search' %}">Search</a></li>
+  </ul>
 <div>
 </body>
 

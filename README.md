@@ -115,8 +115,7 @@ python manage.py runserver localhost:8081
 
 TODO: 
 * Add a base template with a logged in indicator. 
-* Run through ZAP then spider to check for vulnerabilities
-* Look at other OWASP top 10 and add examples.
+* page with dynamic link
 * Ajax spider
 
 ### References

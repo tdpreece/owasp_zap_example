@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Site under test</title>
+</head>
+
+<body>
+{% if user.is_authenticated %}
+  <p>Logged in</p>
+{%  else %}
+  <p>Logged out</p>
+{% endif %}
+  <h1>Search</h1>
+      {% if query %}
+        <p>You searched for {{ query | safe }}</p>
+      {% endif %}
+      <form action="" method="post">
+        <input type="text" name="query">
+        <input type="submit" value="Submit">
+        {% csrf_token %}
+    </form>
+</body>
+
+</html>

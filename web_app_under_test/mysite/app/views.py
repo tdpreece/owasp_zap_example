@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, View
 
 from .forms import ContactForm
 
@@ -23,3 +23,14 @@ class ContactView(FormView):
         # It should return an HttpResponse.
         form.send_email()
         return super(ContactView, self).form_valid(form)
+
+
+class SearchView(View):
+    template_name = 'app/search.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, {})
+
+    def post(self, request, *args, **kwargs):
+        query = request.POST.get('query')
+        return render(request, self.template_name, {'query': query})

@@ -1,13 +1,14 @@
 # OWASP ZAP Example
 
-This was done using Ubuntu 14.04.4 LTS, Google Chorme Version 51.0.2704.103 (64-bit), OWASP ZAP v2.5.0.
+This was done using Ubuntu 14.04.4 LTS, Google Chrome Version 51.0.2704.103 (64-bit), OWASP ZAP v2.5.0.
 
 ## Introduction
 The [OWASP Zed Attack Proxy (ZAP)](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project) is a
 penetration testing tool for finding vulnerabilities in web applications.
 
 Once ZAP is installed the steps for finding vulnerabilites are,
-1. proxy browser based tests (eg using Selenium) through ZAP in order to explore the application in a realistic way,
+1. proxy browser based tests (e.g. using Selenium) through ZAP in order to
+   explore the application in a realistic way,
 3. use the spiders to discover content not covered by regression tests,
 4. run the active scanner to attack the application,
 5. read the alerts found and report any new vulnerabilities.
@@ -35,10 +36,10 @@ nor adding the certificate using ubuntu's update-ca-certificates seemed to work 
 I didn't spend much time looking into this but tried Chrome instead.
 * Started chrome with, `google-chrome-stable --proxy-server=localhost:8080`,
 * settings > + show advanced options > click Manage certificates button (under HTTPS/SSL),
-* selected 'Autorities' tab and clicked import,
+* selected 'Authorities' tab and clicked import,
 * selected owasp certificate and clicked open,
 * checked all 'Trust this certificate for ...' check boxes,
-* clicked 'ok',
+* clicked 'OK',
 * I could now see the OWASP certificate in the list,
 * clicked 'finished',
 * navigated to a https site in chrome to test this all worked.
@@ -61,11 +62,14 @@ Information about the Attack is shown in the bottom pane of the ZAP GUI, e.g.
 ## Full Scan (manual)
 ## Run functional tests through ZAP
 * In ZAP, File > New Session,
-* Run tests using port 8081 (make sure the Django server that was started earlier has been stopped)
+* Run tests using port 8081 (make sure the Django server that was started
+  earlier has been stopped)
+
 ```bash
 DJANGO_LIVE_TEST_SERVER_ADDRESS=localhost:8081 python manage.py test
 ```
-* Urls from the webserver that was browser during tests now appear in the Sites tree. 
+* Urls from the web server that was browser during tests now appear in the Sites
+  tree. 
 
 ![alt text](http://tdpreece.github.io/assets/img/owasp_zap_example/zap-scan-after-fts.png "After running functional tests through ZAP.")
 
@@ -77,12 +81,14 @@ I have successfully used PhantomsJS with ZAP by running ZAP on a separate host.
 * right-click on folder in 'Sites' > 'Include context' > 'Default context' > click 'OK' ,
 
 ## Configure a user
-* Check that detection of anti CSRF tokens in enabled: settings > Anti CSRF Tokens, checked name of token that matches the one I was using (csrfmiddlewaretoken).
+* Check that detection of anti CSRF tokens in enabled: settings >
+  Anti CSRF Tokens, checked name of token that matches the one I was using
+  (csrfmiddlewaretoken).
 
 ### Manual
 * In 'Session Management' check that Cookie-based Session Management is selected.
 * In 'Authentication', select 'Form-based Authentication',
-    * enter "http://localhost:8081/login/" into 'Login Form Targer Url' field.
+    * enter "http://localhost:8081/login/" into 'Login Form Targert Url' field.
     * enter "username=y&password=x" into 'Login Request POST Data' field
     * select "username" in 'Username' select box
     * select "password" in 'Password' select box
@@ -110,7 +116,8 @@ python manage.py runserver localhost:8081
 * Open up 'Sites' and 'http://localhost:8081', right-click on 'http://localhost:8081' > Active Scan,
 * select the user that was used to run the tests (John),
 * click 'Start Scan' button.
-* The alerts tab at the bottom of the gui shows a list of possible security vulnearbilities.
+* The alerts tab at the bottom of the gui shows a list of possible security
+  vulnerabilities.
 
 ![alt text](http://tdpreece.github.io/assets/img/owasp_zap_example/zap-scan-xss-vulnerability.png "XSS vulnerability found by scan")
 
@@ -139,7 +146,7 @@ class TestLogin(StaticLiveServerTestCase):
 ## Wrap scans in BDD
 Though the report given by ZAP is very clear you may want to only test regressions, 
 maintain a list of known false positives and/or have more fine grained scans.
-This can be done quite nicely with the use of a BDD style testing framework 
+This can be done quite nicely with the use of a BDD style testing framework
 (e.g. [Behave for Python](http://pythonhosted.org/behave/)).
 This is an example in Java: https://github.com/continuumsecurity/bdd-security/blob/master/src/test/resources/features/passive_scan.feature.
 
